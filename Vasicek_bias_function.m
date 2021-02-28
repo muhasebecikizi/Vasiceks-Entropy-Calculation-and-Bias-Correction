@@ -2,29 +2,9 @@ function Vasicek_ent_bias = Vasicek_bias_function(M,Mrow)
 asil_matrix = M;
 a = asil_matrix;
 n = length(asil_matrix);
-%satýrlardaki elemanlarý küçükten büyüðe sýralýyoruz
-a = sort(a,2);
-% açýk fonksiyonu da çalýþýyor
-% for row = 1:Mrow
-% for i= 1:length(a)-1
-%     enk = a(row,i);
-%     enk_indis = i;
-%     for j=i+1:length(a)
-%         if a(row,j) < enk
-%             enk = a(row,j);
-%             enk_indis = j;
-%         end         
-%     end 
-%     depo = a(row,i);
-%     a(row,i) = a(row,enk_indis);
-%     a(row,enk_indis) = depo;    
-% end
-% end
 
-% % % % % Vasicek Entropi hesabý
-% % % % % Her bir satýrdaki iþlem baþlangýcýnda
-% % % % % i=1 için 0ýncý eleman olamayacaðý için fark_ilk deðiþkenini
-% % % % % kendimiz tanýmlayýp, bir toplam oluþturuyoruz
+a = sort(a,2);
+
 for row2 = 1:Mrow
 bolum_ilk(row2) = n/2;
 fark_ilk(row2) = a(row2,2)-a(row2,1);
@@ -53,7 +33,7 @@ end
 
 vas_ent = V_ent_1son_1_ortalama;
 
-% % % % % Vasicek Bias Corrected Entropi Hesabý
+% % % % % Vasicek Bias Corrected Entropy Calculator
 digamma1 = psi(2);
 digamma2 = psi(n+1);
 digamma3 = psi(1);
